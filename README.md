@@ -37,8 +37,10 @@ direnv allow
 
 ## 🔒 Security Note
 
-`direnv` is sandboxed — only `export`ed variables are applied to your environment. Be sure to
-review and trust your `.env` files before allowing them.
+> ⚠️ `direnv` applies only explicitly exported variables from the `.envrc` environment. `dotenvx`
+> handles `.env` files without needing `export` statements, so your `.env` or `.env.*` files should
+> use the standard `KEY=value` format. Always review your environment files before allowing `direnv`
+> to apply them, as they affect your local shell environment.
 
 ## 📝 License
 
