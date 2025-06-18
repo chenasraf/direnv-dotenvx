@@ -28,9 +28,18 @@ use_dotenvx() {
     printf "use_dotenvx: loaded variables from %s\n" "$used_file" >&2
   fi
 
+  local EXCLUDE_KEYS=("_" "PKG_EXECPATH")
+  _is_excluded() {
+    local key="$1"
+    for excluded in "${EXCLUDE_KEYS[@]}"; do
+      [[ "$key" == "$excluded" ]] && return 0
+    done
+    return 1
+  }
+
   while IFS='=' read -r key value; do
-    if [[ "$key" =~ ^[a-zA-Z_][a-zA-Z0-9_]*$ && "$key" != "_" && "$key" != "PKG_EXECPATH" ]]; then
-      export "$key=$value"
+    if [[ "$key" =~ ^[a-zA-Z_][a-zA-Z0-9_]*$ ]] && ! _is_excluded "$key"; then
+      export "$key=$(printf '%q' "$value")"
     fi
   done <<<"$added_vars"
 
