@@ -25,15 +25,14 @@ use_dotenvx() {
   added_vars=$(comm -13 "$old_env" "$new_env" | grep '=')
 
   if [ -n "$added_vars" ]; then
-    printf "use_dotenvx: loaded variables from %s: " "$used_file" >&2
+    printf "use_dotenvx: loaded variables from %s\n" "$used_file" >&2
   fi
 
-  while IFS='=' read -r key _value; do
+  while IFS='=' read -r key value; do
     if [[ "$key" =~ ^[a-zA-Z_][a-zA-Z0-9_]*$ && "$key" != "_" && "$key" != "PKG_EXECPATH" ]]; then
-      printf "+%s " "$key" >&2
+      export "$key=$value"
     fi
   done <<<"$added_vars"
 
-  echo "" >&2
   rm -f "$old_env" "$new_env"
 }
