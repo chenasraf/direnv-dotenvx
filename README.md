@@ -5,6 +5,17 @@ A simple direnv extension to automatically load environment variables from `.env
 
 ## 📦 Installation
 
+### Homebrew
+
+```sh
+brew install chenasraf/tap/direnv-dotenvx
+# or
+brew tap chenasraf/tap
+brew install direnv-dotenvx
+```
+
+### Manual
+
 1. Clone the repo somewhere:
 
 ```sh
