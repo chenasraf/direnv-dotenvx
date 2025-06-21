@@ -28,12 +28,15 @@ use_dotenvx() {
     printf "use_dotenvx: loaded variables from %s\n" "$used_file" >&2
   fi
 
-  local EXCLUDE_KEYS=("_" "PKG_EXECPATH" "DOTENV_PUBLIC_KEY")
+  local EXCLUDE_KEYS=("_" "PKG_EXECPATH")
   _is_excluded() {
     local key="$1"
     for excluded in "${EXCLUDE_KEYS[@]}"; do
       [[ "$key" == "$excluded" ]] && return 0
     done
+    if [[ "$key" =~ DOTENV_PUBLIC_KEY.* ]]; then
+      return 0
+    fi
     return 1
   }
 
