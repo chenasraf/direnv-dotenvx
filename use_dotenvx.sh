@@ -6,7 +6,7 @@ use_dotenvx() {
   local used_file=""
 
   if [ -f "$env_file" ]; then
-    dotenvx_env=(--env "$env_file")
+    dotenvx_env=(-f "$env_file")
     used_file="$env_file"
   elif [ -f ".env" ]; then
     used_file=".env"
