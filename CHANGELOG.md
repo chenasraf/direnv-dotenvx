@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/chenasraf/direnv-dotenvx/compare/v1.0.0...v1.1.0) (2025-06-21)
+
+
+### Features
+
+* exclude dotenv public key of any environment ([7eb861c](https://github.com/chenasraf/direnv-dotenvx/commit/7eb861c534251544438c9165874746742caa554a))
+
+
+### Bug Fixes
+
+* env file flag ([09b1deb](https://github.com/chenasraf/direnv-dotenvx/commit/09b1deb7dec5ae50ca9601bc850ba7a8817eb919))
+
 ## 1.0.0 (2025-06-19)
 
 
