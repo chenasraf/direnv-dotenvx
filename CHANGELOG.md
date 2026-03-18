@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/chenasraf/direnv-dotenvx/compare/v1.1.0...v1.2.0) (2026-03-18)
+
+
+### Features
+
+* respect direnv log filter ([8e2cbdc](https://github.com/chenasraf/direnv-dotenvx/commit/8e2cbdc6fad22bc7330ae80574dc92688cc65b21))
+
 ## [1.1.0](https://github.com/chenasraf/direnv-dotenvx/compare/v1.0.0...v1.1.0) (2025-06-21)
 
 
