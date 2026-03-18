@@ -46,6 +46,20 @@ Then run:
 direnv allow
 ```
 
+## 🔇 Log Filtering
+
+`direnv-dotenvx` respects the `log_filter` setting from your direnv config
+(`~/.config/direnv/direnv.toml`). Only log messages matching the regex are shown.
+
+For example, to disable all logs:
+
+```toml
+[global]
+log_filter="^$"
+```
+
+If no `log_filter` is set, all messages are shown by default.
+
 ## 🔒 Security Note
 
 > ⚠️ `direnv` applies only explicitly exported variables from the `.envrc` environment. `dotenvx`
@@ -71,4 +85,3 @@ just a small amount to help sustain this project, I would be very very thankful!
 
 I welcome any issues or pull requests on GitHub. If you find a bug, or would like a new feature,
 don't hesitate to open an appropriate issue and I will do my best to reply promptly.
-
