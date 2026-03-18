@@ -14,6 +14,9 @@ jobs:
   release-please:
     name: Release
     runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -21,3 +24,14 @@ jobs:
         id: release
         with:
           release-type: simple
+
+  release-homebrew:
+    name: Homebrew Release
+    needs: [release-please]
+    if: ${{ needs.release-please.outputs.release_created }}
+    uses: chenasraf/workflows/.github/workflows/homebrew-release.yml@master
+    with:
+      homebrew-tap-repo: chenasraf/homebrew-tap
+      tag: ${{ needs.release-please.outputs.tag_name }}
+    secrets:
+      REPO_DISPATCH_PAT: ${{ secrets.REPO_DISPATCH_PAT }}

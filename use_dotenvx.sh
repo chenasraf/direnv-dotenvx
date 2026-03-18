@@ -1,5 +1,20 @@
 #!/usr/bin/env bash
 
+_dotenvx_log() {
+  local msg="$1"
+  if [ -z "$_dotenvx_log_filter" ]; then
+    local config_home="${XDG_CONFIG_HOME:-$HOME/.config}"
+    local config_file="$config_home/direnv/direnv.toml"
+    if [ -f "$config_file" ]; then
+      _dotenvx_log_filter=$(sed -n 's/^[[:space:]]*log_filter[[:space:]]*=[[:space:]]*"\(.*\)"/\1/p' "$config_file")
+    fi
+    _dotenvx_log_filter="${_dotenvx_log_filter:-.*}"
+  fi
+  if [[ "$msg" =~ $_dotenvx_log_filter ]]; then
+    printf "%s\n" "$msg" >&2
+  fi
+}
+
 use_dotenvx() {
   local env_file=".env.${1:-default}"
   local dotenvx_env=()
@@ -11,7 +26,7 @@ use_dotenvx() {
   elif [ -f ".env" ]; then
     used_file=".env"
   else
-    echo "use_dotenvx: no .env file found" >&2
+    _dotenvx_log "use_dotenvx: no .env file found"
     return 0
   fi
 
@@ -25,7 +40,7 @@ use_dotenvx() {
   added_vars=$(comm -13 "$old_env" "$new_env" | grep '=')
 
   if [ -n "$added_vars" ]; then
-    printf "use_dotenvx: loaded variables from %s\n" "$used_file" >&2
+    _dotenvx_log "use_dotenvx: loaded variables from $used_file"
   fi
 
   local EXCLUDE_KEYS=("_" "PKG_EXECPATH")
