@@ -37,7 +37,7 @@ use_dotenvx() {
   env | LC_ALL=C sort >"$old_env"
   dotenvx run "${dotenvx_env[@]}" -- env | LC_ALL=C sort >"$new_env"
 
-  added_vars=$(comm -13 "$old_env" "$new_env" | grep '=')
+  added_vars=$(LC_ALL=C comm -13 "$old_env" "$new_env" | grep '=')
 
   if [ -n "$added_vars" ]; then
     _dotenvx_log "use_dotenvx: loaded variables from $used_file"
