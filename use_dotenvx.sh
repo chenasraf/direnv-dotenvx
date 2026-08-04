@@ -16,13 +16,23 @@ _dotenvx_log() {
 }
 
 use_dotenvx() {
-  local env_file=".env.${1:-default}"
+  local raw_env_file="$1"
+  local env_file=""
+  if [[ "$1" == */* ]]; then
+    env_file="$1";
+  else
+    env_file=".env.${1:-default}"
+  fi
+
   local dotenvx_env=()
   local used_file=""
 
   if [ -f "$env_file" ]; then
     dotenvx_env=(-f "$env_file")
     used_file="$env_file"
+  elif [ -f "$raw_env_file" ]; then
+    dotenvx_env=(-f "$raw_env_file")
+    used_file="$raw_env_file"
   elif [ -f ".env" ]; then
     used_file=".env"
   else
