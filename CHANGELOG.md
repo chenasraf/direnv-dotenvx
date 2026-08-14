@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/chenasraf/direnv-dotenvx/compare/v1.2.0...v1.2.1) (2026-08-14)
+
+
+### Bug Fixes
+
+* **use_dotenvx:** stop shell-escaping values with printf %q ([1422dcc](https://github.com/chenasraf/direnv-dotenvx/commit/1422dcc43e024a7ccf4ace873b33870c75362df5))
+
 ## [1.2.0](https://github.com/chenasraf/direnv-dotenvx/compare/v1.1.0...v1.2.0) (2026-03-18)
 
 
