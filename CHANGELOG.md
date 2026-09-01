@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/chenasraf/direnv-dotenvx/compare/v1.2.1...v1.3.0) (2026-09-01)
+
+
+### Features
+
+* allow specifying raw paths ([102829e](https://github.com/chenasraf/direnv-dotenvx/commit/102829e64c53f1eb18a2bbc98edd1463186b8c25))
+
+
+### Bug Fixes
+
+* correct LC_ALL handling ([565d18b](https://github.com/chenasraf/direnv-dotenvx/commit/565d18b242959fd12c9c3f77f454714c172d144b))
+
 ## [1.2.1](https://github.com/chenasraf/direnv-dotenvx/compare/v1.2.0...v1.2.1) (2026-08-14)
 
 
